@@ -1,6 +1,6 @@
 {
   "name": "auto-docu",
-  "version": "0.0.1-beta.7",
+  "version": "0.0.1-beta.8",
   "description": "AutoDocu",
   "main": "index.js",
   "directories": {
@@ -11,11 +11,14 @@
     "cover": "nyc mocha test/index.js",
     "postinstall": "cd test && npm i"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/klangenk/auto-docu.git"
+  },
   "author": "Kevin Langenkämper <k.langenk@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "change-case": "^3.0.2",
-    "jsdoc": "^3.5.5"
+    "change-case": "^3.0.2"
   },
   "bin": {
     "enable-inspection": "./bin/enable.js",
