@@ -1,0 +1,35 @@
+{
+  "name": "auto-docu",
+  "version": "0.0.1-beta.7",
+  "description": "AutoDocu",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "mocha test/index.js",
+    "cover": "nyc mocha test/index.js",
+    "postinstall": "cd test && npm i"
+  },
+  "author": "Kevin Langenkämper <k.langenk@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "change-case": "^3.0.2",
+    "jsdoc": "^3.5.5"
+  },
+  "bin": {
+    "enable-inspection": "./bin/enable.js",
+    "generate-doc": "./bin/generateDocs.js",
+    "cleanup-inspection": "./bin/clean.js"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
+  },
+  "nyc": {
+    "reporter": [
+      "html",
+      "text-summary"
+    ]
+  }
+}
