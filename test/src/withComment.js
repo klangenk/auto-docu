@@ -3,12 +3,22 @@ function test1 (a, b) {
 
 }
 
-// Another test comment
-function test2 () {
+// Multiline
+// test comment
+function test2 (a) {
+
+}
+
+/**
+ * Block comment
+ * 2nd line
+ */
+function test3 (a) {
 
 }
 
 module.exports = {
   test1,
-  test2
+  test2,
+  test3
 }
