@@ -1,4 +1,4 @@
-# auto-docu
+# auto-docu [![Coverage Status](https://coveralls.io/repos/github/klangenk/auto-docu/badge.svg?branch=master)](https://coveralls.io/github/klangenk/auto-docu?branch=master)
 
 This is a module to auto generate JSDoc comments in NodeJS projects. 
 
