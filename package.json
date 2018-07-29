@@ -15,8 +15,7 @@
   },
   "scripts": {
     "test": "mocha test/index.js",
-    "cover": "nyc mocha test/index.js",
-    "publish-coverage": "nyc --reporter=lcov --reporter=text-lcov mocha test/index.js"
+    "cover": "nyc npm t"
   },
   "repository": {
     "type": "git",
@@ -33,7 +32,6 @@
     "cleanup-inspection": "./bin/clean.js"
   },
   "devDependencies": {
-    "coveralls": "^3.0.2",
     "mocha": "^5.2.0",
     "nyc": "^12.0.2"
   },
