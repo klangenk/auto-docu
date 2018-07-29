@@ -15,7 +15,8 @@
   },
   "scripts": {
     "test": "mocha test/index.js",
-    "cover": "nyc npm t"
+    "cover": "nyc npm t",
+    "publish-coverage": "nyc --reporter=lcov --reporter=text-lcov npm t | npx coveralls"
   },
   "repository": {
     "type": "git",
