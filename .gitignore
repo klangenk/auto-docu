@@ -32,3 +32,5 @@ node_modules
 out/
 
 \.nyc_output/
+
+\.coveralls\.yml
