@@ -26,7 +26,8 @@ before(async function() {
   await moveFile(path.resolve(src, 'simple.js'), path.resolve(src, 'simple.original'))
   await writeFile(path.resolve(src, 'simple.js'), '')
 
-  await exec(`enable-inspection ${src}`)
+  const {stdout: out} = await exec(`enable-inspection ${src}`)
+  console.log(out)
   for (const file of files) {
     try {
       const run = require(path.resolve(runs, file))
