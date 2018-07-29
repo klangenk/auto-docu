@@ -12,6 +12,9 @@ const snapshots = path.resolve(__dirname, 'snapshots')
 const runs = path.resolve(__dirname, 'runs')
 const files = fs.readdirSync(src)
 const changeCase = require('change-case')
+const clean = require('../lib/bin/clean')
+const generateDocs = require('../lib/bin/generateDocs')
+const putInspect = require('../lib/bin/putInspect')
 
 function formatFilename(file) {
   return changeCase.sentenceCase(
@@ -26,20 +29,21 @@ before(async function() {
   await moveFile(path.resolve(src, 'simple.js'), path.resolve(src, 'simple.original'))
   await writeFile(path.resolve(src, 'simple.js'), '')
 
-  const {stdout: out, stderr: err} = await exec(`enable-inspection ${src}`)
-  console.log(out, err)
   for (const file of files) {
-      const run = require(path.resolve(runs, file))
-      const test = require(path.resolve(src, file))
-      run(test)
-    
+    const srcPath = path.resolve(src, file)
+    putInspect(srcPath)
+    const run = require(path.resolve(runs, file))
+    const test = require(srcPath)
+    await run(test)
+    generateDocs(srcPath)
   }
-  const {stdout} = await exec(`generate-doc ${src}`)
-  console.log(stdout)
+ 
 })
 
 after(async() => {
-  await exec(`cleanup-inspection ${src} --restore`)
+  for (const file of files) {
+    clean(path.resolve(src, file), true)
+  }
 })
 
 describe('Check snapshots', () => {
