@@ -31,9 +31,19 @@ function test4 (a) {
 
 }
 
+/**
+ * Awesome description 5
+ * @param {string} a the first parameter
+ * @param {number} b the second parameter
+ */
+function test5 ({a, b}) {
+
+}
+
 module.exports = {
   test1,
   test2,
   test3,
-  test4
+  test4,
+  test5
 }

@@ -34,7 +34,8 @@ before(async function() {
       run(test)
     } catch (err) {}
   }
-  await exec(`generate-doc ${src}`)
+  const {stdout} = await exec(`generate-doc ${src}`)
+  console.log(stdout)
 })
 
 after(async() => {
