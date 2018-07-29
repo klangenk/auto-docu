@@ -2,6 +2,7 @@
   "name": "auto-docu",
   "version": "0.1.0",
   "description": "AutoDocu",
+  "keywords": ["automatic", "jsdoc", "comment", "documentation"],
   "main": "index.js",
   "directories": {
     "lib": "lib"
