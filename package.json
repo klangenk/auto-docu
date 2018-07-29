@@ -1,7 +1,7 @@
 {
   "name": "auto-docu",
   "version": "0.1.1",
-  "description": "AutoDocu",
+  "description": "Automatically generate JSDoc comments at runtime",
   "keywords": [
     "auto",
     "automatic",
