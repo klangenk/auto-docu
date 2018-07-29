@@ -1,8 +1,13 @@
 {
   "name": "auto-docu",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "AutoDocu",
-  "keywords": ["automatic", "jsdoc", "comment", "documentation"],
+  "keywords": [
+    "automatic",
+    "jsdoc",
+    "comment",
+    "documentation"
+  ],
   "main": "index.js",
   "directories": {
     "lib": "lib"
