@@ -1,5 +1,7 @@
 /test/package-lock.json
+/test/node_modules
 /coverage
 .nyc_output
 .gitignore
 .coveralls.yml
+/out
