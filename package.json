@@ -1,6 +1,6 @@
 {
   "name": "auto-docu",
-  "version": "0.0.1-beta.8",
+  "version": "0.0.1",
   "description": "AutoDocu",
   "main": "index.js",
   "directories": {
