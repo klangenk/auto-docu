@@ -6,4 +6,13 @@
 const awesomeFunction = (a, b) => {
  
 }
-module.exports = awesomeFunction
+
+/**
+ * Foo bar
+ * @param {string} a first
+ * @param {number} b second
+ */
+const anotherAwesomeFunction = (a, b) => {
+ 
+}
+module.exports = {awesomeFunction, anotherAwesomeFunction}
