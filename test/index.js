@@ -26,14 +26,13 @@ before(async function() {
   await moveFile(path.resolve(src, 'simple.js'), path.resolve(src, 'simple.original'))
   await writeFile(path.resolve(src, 'simple.js'), '')
 
-  const {stdout: out} = await exec(`enable-inspection ${src}`)
-  console.log(out)
+  const {stdout: out, stderr: err} = await exec(`enable-inspection ${src}`)
+  console.log(out, err)
   for (const file of files) {
-    try {
       const run = require(path.resolve(runs, file))
       const test = require(path.resolve(src, file))
       run(test)
-    } catch (err) {}
+    
   }
   const {stdout} = await exec(`generate-doc ${src}`)
   console.log(stdout)
