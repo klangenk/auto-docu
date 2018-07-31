@@ -14,7 +14,7 @@ const files = fs.readdirSync(src)
 const changeCase = require('change-case')
 const clean = require('../lib/bin/clean')
 const generateDocs = require('../lib/bin/generateDocs')
-const putInspect = require('../lib/bin/putInspect')
+const putInspect = require('../lib/bin/enableInspection')
 
 function formatFilename(file) {
   return changeCase.sentenceCase(

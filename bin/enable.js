@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const putInspect = require('../lib/bin/putInspect')
+const enableInspection = require('../lib/bin/enableInspection')
 const { getFiles } = require('../lib/helpers')
 
-getFiles(process.argv[2]).forEach(putInspect)
+getFiles(process.argv[2]).forEach(enableInspection)
