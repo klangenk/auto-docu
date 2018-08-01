@@ -16,6 +16,7 @@
   "scripts": {
     "test": "mocha test/index.js",
     "cover": "nyc npm t",
+    "build": "npx babel src --out-dir lib",
     "publish-coverage": "nyc --reporter=lcov --reporter=text-lcov npm t | npx coveralls"
   },
   "repository": {

@@ -1,3 +1,3 @@
 module.exports = {
-  Inspector: require('./build/Inspector'),
+  Inspector: require('./src/Inspector'),
 }

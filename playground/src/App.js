@@ -8,9 +8,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid';
 
-import Inspector from 'auto-docu/build/Inspector';
-import putInspect from 'auto-docu/build/putInspect'
-import JSDoc from 'auto-docu/build/JsDoc'
+import Inspector from 'auto-docu/lib/Inspector';
+import putInspect from 'auto-docu/lib/putInspect'
+import JSDoc from 'auto-docu/lib/JsDoc'
 import './App.css';
 
 import 'brace/mode/javascript';

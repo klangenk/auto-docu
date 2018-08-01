@@ -12,9 +12,9 @@ const snapshots = path.resolve(__dirname, 'snapshots')
 const runs = path.resolve(__dirname, 'runs')
 const files = fs.readdirSync(src)
 const changeCase = require('change-case')
-const clean = require('../lib/bin/clean')
-const generateDocs = require('../lib/bin/generateDocs')
-const putInspect = require('../lib/bin/enableInspection')
+const clean = require('../src/bin/clean')
+const generateDocs = require('../src/bin/generateDocs')
+const putInspect = require('../src/bin/enableInspection')
 
 function formatFilename(file) {
   return changeCase.sentenceCase(

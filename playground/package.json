@@ -1,6 +1,6 @@
 {
   "name": "playground",
-  "homepage": "http://klangenk.github.io/auto-docu",
+  "homepage": "https://klangenk.github.io/auto-docu",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
