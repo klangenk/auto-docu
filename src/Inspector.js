@@ -2,7 +2,7 @@ const fs = require('fs')
 const getFilenames = require('./filenames')
 require('./prunedJSON')
 
-function mapParam (value) {
+async function mapParam (value) {
   if (value === null || value === undefined) {
     return {}
   }
@@ -13,19 +13,27 @@ function mapParam (value) {
   }
 
   if (type === 'Object') {
-    return {
+    let result = {
       type,
-      params: Object.keys(value).reduce((result, key) => {
-        result[key] = mapParam(value[key])
-        return result
-      }, {})
+      params: {}
     }
+    for (const key in value) {
+      result.params[key] = await mapParam(value[key])
+    }
+    return result
   }
 
   if (type === 'Array') {
     return {
       type,
-      params: value.map(mapParam)
+      params: await Promise.all(value.map(mapParam))
+    }
+  }
+
+  if (type === 'Promise') {
+    return {
+      type,
+      param: await mapParam(await value)
     }
   }
 
@@ -45,18 +53,24 @@ class Inspector {
     })
   }
 
-  inspect (index, func, ...params) {
-    const returns = func(...params)
+ 
+
+  async handleCall(index, params, returns) {
     if (!this.calls[index]) this.calls[index] = []
     this.calls[index].push({
-      params: params.map(mapParam),
-      returns: mapParam(returns)
+      params: await Promise.all(params.map(mapParam)),
+      returns: await mapParam(returns)
     })
     this.onUpdate(this.calls)
-    return returns
   }
 
-
+  inspect (index, func, ...params) {
+    const returns = func(...params)
+    Inspector.promises.push(this.handleCall(index, params, returns))
+    return returns
+  }
 }
+
+Inspector.promises = []
 
 module.exports = Inspector

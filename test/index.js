@@ -15,6 +15,7 @@ const changeCase = require('change-case')
 const clean = require('../src/bin/clean')
 const generateDocs = require('../src/bin/generateDocs')
 const putInspect = require('../src/bin/enableInspection')
+const Inspector = require('../src/Inspector')
 
 function formatFilename(file) {
   return changeCase.sentenceCase(
@@ -35,7 +36,11 @@ before(async function() {
     const run = require(path.resolve(runs, file))
     const test = require(srcPath)
     await run(test)
-    generateDocs(srcPath)
+  }
+  await Promise.all(Inspector.promises)
+
+  for (const file of files) {
+    generateDocs(path.resolve(src, file))
   }
  
 })

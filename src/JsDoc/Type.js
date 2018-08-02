@@ -41,7 +41,11 @@ function getType(example) {
     if (example.params.length) {
       return `${getType(example.params[0])}[]`
     }
-  }  
+  } 
+  
+  if (example.type === 'Promise') {
+    return `Promise<${getType(example.param)}>`
+  }
   return typeMap[example.type] || example.type
 }
 

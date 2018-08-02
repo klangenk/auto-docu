@@ -64,6 +64,7 @@ class App extends Component {
         ${source}
         ${src2}
       })()`)
+      await Promise.all(Inspector.promises)
       result = new JSDoc(functions, calls).write(src)
     } catch (err) {
       this.setState({
