@@ -6,3 +6,4 @@
 .coveralls.yml
 /out
 /playground
+/lib

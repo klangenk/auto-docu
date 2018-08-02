@@ -1,6 +1,5 @@
 const fs = require('fs')
 const getFilenames = require('./filenames')
-require('./prunedJSON')
 
 async function mapParam (value) {
   if (value === null || value === undefined) {

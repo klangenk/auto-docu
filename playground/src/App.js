@@ -8,9 +8,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid';
 
-import Inspector from 'auto-docu/lib/Inspector';
-import putInspect from 'auto-docu/lib/putInspect'
-import JSDoc from 'auto-docu/lib/JsDoc'
+import dummyData from './dummyData'
+
+import { Inspector, putInspect,JSDoc } from 'auto-docu';
+
 import './App.css';
 
 import 'brace/mode/javascript';
@@ -28,12 +29,11 @@ const editorProps = {
 }
 
 
-
 class App extends Component {
   constructor(props) {
     super(props)
-    const src = 'function a (b) { return 8 }'
-    const src2 = 'a(7)'
+    const src = dummyData.definition
+    const src2 = dummyData.calls
     this.state = {
       src,
       src2,
