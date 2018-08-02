@@ -2,11 +2,30 @@ const fs = require('fs')
 const getFilenames = require('./filenames')
 require('./prunedJSON')
 
-function mapParam (param) {
-  if (typeof param === 'function') {
-    return '__FUNCTION__'
+function mapParam (value) {
+  if (value === null || value === undefined) {
+    return {}
   }
-  return param
+  let type = typeof value
+
+  if (value.constructor && value.constructor.name) {
+    type = value.constructor.name
+  }
+
+  if (type !== 'Object' && type !== 'Array') {
+    return {
+      type
+    }
+  }
+
+  return {
+    type,
+    params: Object.keys(value).reduce((result, key) => {
+      result[key] = mapParam(value[key])
+      return result
+    }, {})
+  }
+  
 }
 
 
@@ -28,6 +47,8 @@ class Inspector {
     this.onUpdate(this.calls)
     return returns
   }
+
+
 }
 
 module.exports = Inspector
