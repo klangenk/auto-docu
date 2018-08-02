@@ -41,17 +41,17 @@ class Param {
 
   addExample (example) {
     this.calls++
-    if (example === null || example === undefined) {
+    if (!example.type) {
       this.optional = true
       return
     }
 
     const type = this.types.addExample(example)
 
-    if (type === 'Object') {
-      Object.keys(example)
+    if (example.type === 'Object') {
+      Object.keys(example.params)
         .filter(key => !key.startsWith('_'))
-        .forEach(key => this.addProp(key, example[key]))
+        .forEach(key => this.addProp(key, example.params[key]))
     }
 
     if (type.includes('[]')) {
@@ -59,12 +59,12 @@ class Param {
         const depth = (type.match(/\[/g)).length
         let obj = example
         for (let i = 0; i < depth; i++) {
-          obj = obj[0]
+          obj = obj.params[0]
         }
         const parent = `${this.fullName}${'[]'.repeat(depth)}`
-        Object.keys(obj)
+        Object.keys(obj.params)
           .filter(key => !key.startsWith('_'))
-          .forEach(key => this.addProp(key, obj[key], parent))
+          .forEach(key => this.addProp(key, obj.params[key], parent))
       }
 
     }

@@ -13,10 +13,9 @@ class Type {
   }
 
   addExample (example) {
-    if (example === null || example === undefined) {
-      return
-    }
+    
     const type = getType(example)
+    if (!type) return
     if (!this.types.includes(type)) this.types.push(type)
     return type
   }
@@ -26,22 +25,28 @@ class Type {
   }
 }
 
+const typeMap = {
+  'String': 'string',
+  'Function': 'function',
+  'Boolean': 'boolean',
+  'Number': 'number'
+}
+
 
 function getType(example) {
-  if (example === '__FUNCTION__') return 'function'
-  if (example === '__PROMISE__') return 'Promise'
-  let type = typeof example
-  if (type === 'object') {
-    if (Array.isArray(example)) {
-      if (example.length) {
-        return `${getType(example[0])}[]`
-      }
-      return 'Array'
-    }
-    return 'Object'
+  if (example === null || example === undefined || !example.type) {
+    return null
   }
+  if (example.type === 'Array') {
+    if (example.params.length) {
+      return `${getType(example.params[0])}[]`
+    }
+  } 
   
-  return type
+  if (example.type === 'Promise') {
+    return `Promise<${getType(example.param)}>`
+  }
+  return typeMap[example.type] || example.type
 }
 
 module.exports = Type

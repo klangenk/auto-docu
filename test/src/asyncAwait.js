@@ -17,7 +17,12 @@ const test4 = async (a) => {
 }
 
 const test5 = async a => {
-  return 5
+  return {}
+}
+
+const test6 = async a => {
+  const result = await test1(a)
+  return result
 }
 
 module.exports = {
@@ -25,5 +30,6 @@ module.exports = {
   test2: obj.test2,
   test3,
   test4,
-  test5
+  test5,
+  test6
 }

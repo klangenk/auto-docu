@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const regexParts = {
   indentation: `^([ \t]*)`,
   fName: `([\\w\\.]+)`,

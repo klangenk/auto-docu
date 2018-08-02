@@ -12,9 +12,10 @@ const snapshots = path.resolve(__dirname, 'snapshots')
 const runs = path.resolve(__dirname, 'runs')
 const files = fs.readdirSync(src)
 const changeCase = require('change-case')
-const clean = require('../lib/bin/clean')
-const generateDocs = require('../lib/bin/generateDocs')
-const putInspect = require('../lib/bin/putInspect')
+const clean = require('../src/bin/clean')
+const generateDocs = require('../src/bin/generateDocs')
+const putInspect = require('../src/bin/enableInspection')
+const Inspector = require('../src/Inspector')
 
 function formatFilename(file) {
   return changeCase.sentenceCase(
@@ -35,7 +36,11 @@ before(async function() {
     const run = require(path.resolve(runs, file))
     const test = require(srcPath)
     await run(test)
-    generateDocs(srcPath)
+  }
+  await Promise.all(Inspector.promises)
+
+  for (const file of files) {
+    generateDocs(path.resolve(src, file))
   }
  
 })

@@ -2,6 +2,8 @@
 
 This is a module to auto generate JSDoc comments in NodeJS projects. 
 
+[DEMO](https://klangenk.github.io/auto-docu)
+
 ### Workflow
 
 - run ```npm i auto-docu```
