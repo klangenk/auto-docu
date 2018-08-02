@@ -12,19 +12,27 @@ function mapParam (value) {
     type = value.constructor.name
   }
 
-  if (type !== 'Object' && type !== 'Array') {
+  if (type === 'Object') {
     return {
-      type
+      type,
+      params: Object.keys(value).reduce((result, key) => {
+        result[key] = mapParam(value[key])
+        return result
+      }, {})
+    }
+  }
+
+  if (type === 'Array') {
+    return {
+      type,
+      params: value.map(mapParam)
     }
   }
 
   return {
-    type,
-    params: Object.keys(value).reduce((result, key) => {
-      result[key] = mapParam(value[key])
-      return result
-    }, {})
+    type
   }
+  
   
 }
 
@@ -33,7 +41,7 @@ class Inspector {
   constructor (filename, onUpdate) {
     this.calls = []
     this.onUpdate = onUpdate || ((calls) => {
-      fs.writeFileSync(getFilenames(filename).inspect, JSON.pruned(calls, 10))
+      fs.writeFileSync(getFilenames(filename).inspect, JSON.stringify(calls))
     })
   }
 
@@ -42,7 +50,7 @@ class Inspector {
     if (!this.calls[index]) this.calls[index] = []
     this.calls[index].push({
       params: params.map(mapParam),
-      returns
+      returns: mapParam(returns)
     })
     this.onUpdate(this.calls)
     return returns

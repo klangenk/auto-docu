@@ -4,7 +4,6 @@ const Function = require('./Function')
 
 class JsDoc {
   constructor (meta, inspect) {
-    console.log(meta, inspect)
     this.functions = meta.map((func, funcIndex) => new Function(func, inspect[funcIndex]))
   }
 
