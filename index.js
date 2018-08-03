@@ -1,5 +1,8 @@
+require('babel-core/register')
+require('babel-polyfill')
+
 module.exports = {
-  Inspector: require('./src/Inspector'),
-  putInspect: require('./src/putInspect'),
-  JSDoc: require('./src/JSDoc'),
+  Inspector: require('./lib/Inspector'),
+  putInspect: require('./lib/putInspect'),
+  JSDoc: require('./lib/JSDoc')
 }
