@@ -65,10 +65,6 @@ function findEnd(src, bodyStart) {
   const stack = ['{']
   let lastStringStart
   for (let i = bodyStart; i < src.length; i++) {
-    if (escaped) {
-      escaped = false
-      break
-    }
     switch (src[i]) {
       case '\\':
         i++
