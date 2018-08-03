@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const clean = require('../lib/bin/clean')
-const { getFiles } = require('../lib/helpers')
+const clean = require('../src/bin/clean')
+const { getFiles } = require('../src/helpers')
 
 const restore = process.argv.includes('--restore')
 
