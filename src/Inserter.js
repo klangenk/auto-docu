@@ -15,7 +15,7 @@ class Inserter {
    * @param {number} startPos
    * @param {number} [endPos=startPos]
    */
-  insert(string, startPos, endPos = startPos) {
+  insert (string, startPos, endPos = startPos) {
     this.source = `${this.source.slice(0, startPos + this.offset)}${string}${this.source.slice(endPos + this.offset)}`
     this.offset += (string.length - endPos + startPos)
   }

@@ -26,7 +26,7 @@ class Function {
         this.params.forEach((param, index) => {
           param.addExample(call.params[index])
         })
-       
+
         this.returns.addExample(call.returns)
       })
     }
@@ -36,7 +36,7 @@ class Function {
    * Parse comment
    */
   parseComment () {
-    const lines =  this.comment
+    const lines = this.comment
       .trim()
       .split('\n')
       .map(line => line.replace(/(\/\/|\/\*|\*\/?)\s*/g, '').trim())
@@ -44,7 +44,7 @@ class Function {
       .filter(line => !line.startsWith('@'))
       .join('\n')
       .trim()
-    
+
     this.oldParams = lines
       .filter(line => line.startsWith('@param'))
       .map(line => Param.parse(this, line))
@@ -52,8 +52,6 @@ class Function {
         acc[curr.fullName] = curr
         return acc
       }, {})
-
-    
   }
 
   /**
@@ -68,10 +66,9 @@ class Function {
       this.returns.isDefined && ` * @returns ${this.returns}`,
       ' */'
     ].filter(x => x)
-    .map(line => `${this.indentation}${line}\n`)
+      .map(line => `${this.indentation}${line}\n`)
     return lines.join('')
   }
 }
-
 
 module.exports = Function

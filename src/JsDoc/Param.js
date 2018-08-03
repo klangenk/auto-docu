@@ -37,7 +37,7 @@ class Param {
     if (oldParam) {
       oldParam.parent = parent
       return oldParam
-    } 
+    }
     return new Param(func, name, defaultValue, parent, types, description)
   }
 
@@ -54,7 +54,7 @@ class Param {
   }
 
   addProp (key, value, parent = this.fullName) {
-    if(!this.props[key]) {
+    if (!this.props[key]) {
       this.props[key] = Param.create(this.func, key, undefined, parent)
     }
     this.props[key].addExample(value)
@@ -93,7 +93,6 @@ class Param {
           .filter(key => !key.startsWith('_'))
           .forEach(key => this.addProp(key, obj.params[key], parent))
       }
-
     }
   }
 
@@ -115,10 +114,10 @@ class Param {
   toArray () {
     this.checkOptional()
     let name = this.fullName
-    if (this.defaultValue !== undefined) name = `${name}=${this.defaultValue.replace(/'|"/g,'')}`
+    if (this.defaultValue !== undefined) name = `${name}=${this.defaultValue.replace(/'|"/g, '')}`
     if (this.optional) name = `[${name}]`
-    const param =`@param ${this.types} ${name} ${this.description.trim()}`.trim()
-    let doc = [` * ${param}`]
+    const param = `@param ${this.types} ${name} ${this.description.trim()}`.trim()
+    const doc = [` * ${param}`]
 
     const subDoc = flatten(Object.values(this.props).map(prop => prop.toArray()))
 

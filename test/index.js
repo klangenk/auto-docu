@@ -1,9 +1,8 @@
 
-const util = require('util');
-const path = require('path');
+const util = require('util')
+const path = require('path')
 const fs = require('fs')
 const assert = require('assert')
-const exec = util.promisify(require('child_process').exec);
 const readFile = util.promisify(fs.readFile)
 const writeFile = util.promisify(fs.writeFile)
 const moveFile = util.promisify(fs.rename)
@@ -18,15 +17,14 @@ const generateDocs = require('../src/bin/generateDocs')
 const putInspect = require('../src/bin/enableInspection')
 const Inspector = require('../src/Inspector')
 
-
-function formatFilename(file) {
+function formatFilename (file) {
   return changeCase.sentenceCase(
     file.split('.').slice(0, -1).join('.')
   )
 }
 
-before(async function() {
-  this.timeout(10000);
+before(async function () {
+  this.timeout(10000)
 
   // Test if the original file is used if it exists
   await moveFile(path.resolve(src, 'simple.js'), path.resolve(src, 'simple.original'))
@@ -44,10 +42,9 @@ before(async function() {
   for (const file of files) {
     generateDocs(path.resolve(src, file))
   }
- 
 })
 
-after(async() => {
+after(async () => {
   for (const file of files) {
     clean(path.resolve(src, file), true)
   }
@@ -61,8 +58,7 @@ describe('Check snapshots', () => {
         readFile(path.resolve(snapshots, file), 'utf-8')
       ])
 
-      assert.equal(actual, expected)
+      assert.strictEqual(actual, expected)
     })
   }
-  
 })

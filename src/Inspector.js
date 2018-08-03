@@ -16,7 +16,7 @@ async function mapParam (value) {
   }
 
   if (type === 'Object') {
-    let result = {
+    const result = {
       type,
       params: {}
     }
@@ -43,10 +43,7 @@ async function mapParam (value) {
   return {
     type
   }
-  
-  
 }
-
 
 class Inspector {
   /**
@@ -61,15 +58,13 @@ class Inspector {
     })
   }
 
- 
-
   /**
    * Handle call
    * @param {number} index
    * @param {Object[]} params
    * @param {*} returns
    */
-  async handleCall(index, params, returns) {
+  async handleCall (index, params, returns) {
     if (!this.calls[index]) this.calls[index] = []
     this.calls[index].push({
       params: await Promise.all(params.map(mapParam)),

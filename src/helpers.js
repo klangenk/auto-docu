@@ -1,7 +1,6 @@
 const fs = require('fs')
 const {resolve, join} = require('path')
 
-
 /**
  * Get files
  * @param {string} root
@@ -11,7 +10,7 @@ const getFiles = (root) => {
   let result = []
   fs.readdirSync(root).forEach(file => {
     const path = join(root, file)
-    const stat = fs.statSync(path);
+    const stat = fs.statSync(path)
     if (!stat.isDirectory()) {
       result.push(file)
     } else {

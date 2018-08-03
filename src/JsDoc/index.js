@@ -1,6 +1,5 @@
-const fs = require('fs')
 const Inserter = require('../Inserter')
-const Function = require('./Function')
+const FunctionClass = require('./Function')
 
 class JSDoc {
   /**
@@ -16,7 +15,7 @@ class JSDoc {
    * @param {string} [inspect[][].returns.param.type]
    */
   constructor (meta, inspect) {
-    this.functions = meta.map((func, funcIndex) => new Function(func, inspect[funcIndex]))
+    this.functions = meta.map((func, funcIndex) => new FunctionClass(func, inspect[funcIndex]))
   }
 
   /**

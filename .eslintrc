@@ -1,0 +1,10 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": ["standard"],
+  "rules": {
+    "prefer-template": 1,
+    "prefer-const": 1
+  }
+}

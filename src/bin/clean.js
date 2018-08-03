@@ -18,13 +18,13 @@ const remove = (file) => {
  * @param {string} from
  * @param {string} to
  */
-const copy = (from, to) => { 
-  try { 
-    fs.copyFileSync(from, to) 
-  } catch (err) { 
- 
-  } 
-} 
+const copy = (from, to) => {
+  try {
+    fs.copyFileSync(from, to)
+  } catch (err) {
+
+  }
+}
 
 /**
  * Clean
@@ -40,4 +40,3 @@ function clean (filename, restore) {
 }
 
 module.exports = clean
-

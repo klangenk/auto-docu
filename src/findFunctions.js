@@ -7,21 +7,19 @@ const regexParts = {
   async: '(?:(async)?)'
 }
 
-
-
 /**
  * Find functions
  * @param {string} source
  * @returns {Object[]}
  */
 function findFunctions (source) {
-  const {indentation, fName, paramList, paramListArrow, comment, async} = regexParts 
-  let regex = new RegExp(`${comment}${indentation}${async}[^,\n\(]*?${fName}\\s*?${paramList}\\s*?\\{`, 'gm')
-  
+  const {indentation, fName, paramList, paramListArrow, comment, async} = regexParts
+  let regex = new RegExp(`${comment}${indentation}${async}[^,\n(]*?${fName}\\s*?${paramList}\\s*?\\{`, 'gm')
+
   let match
 
   const functions = []
-
+  // eslint-disable-next-line no-cond-assign
   while (match = regex.exec(source)) {
     const func = {
       pos: match.index,
@@ -42,6 +40,7 @@ function findFunctions (source) {
   }
 
   regex = new RegExp(`${comment}${indentation}.*?${fName}\\s*?=\\s*${async}\\s*${paramListArrow}\\s*?=>\\s*(\\{?)`, 'gm')
+  // eslint-disable-next-line no-cond-assign
   while (match = regex.exec(source)) {
     const func = {
       pos: match.index,
@@ -63,7 +62,7 @@ function findFunctions (source) {
 
   return functions
     .filter(({name}) => !name.match(/^(for|if|while}|catch)/))
-    .sort((a,b) => a.pos - b.pos)
+    .sort((a, b) => a.pos - b.pos)
 }
 
 /**
@@ -72,7 +71,7 @@ function findFunctions (source) {
  * @param {number} bodyStart
  * @returns {number}
  */
-function findEnd(src, bodyStart) {
+function findEnd (src, bodyStart) {
   const stack = ['{']
   let lastStringStart
   for (let i = bodyStart; i < src.length; i++) {
@@ -91,20 +90,19 @@ function findEnd(src, bodyStart) {
         } else {
           lastStringStart = src[i]
         }
-        break;
+        break
       case '{':
-        if (lastStringStart) break;
+        if (lastStringStart) break
         stack.push('{')
         break
       case '}':
-        if (lastStringStart) break;
+        if (lastStringStart) break
         stack.pop()
         if (!stack.length) return i
         break
     }
   }
 }
-
 
 /**
  * Extract params
@@ -131,15 +129,16 @@ function extractParams (params) {
           result.push(actParam)
           actParam = ''
           break
-        }        
-      
+        }
+        actParam += params[i]
+        break
       default:
         actParam += params[i]
     }
   }
 
   result.push(actParam)
-  
+
   let destructIndex = 0
   return result.map(param => {
     const [name, defaultValue] = param.split('=').map(part => part.trim())

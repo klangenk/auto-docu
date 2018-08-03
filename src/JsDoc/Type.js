@@ -1,5 +1,5 @@
 class Type {
-  constructor (types=[]) {
+  constructor (types = []) {
     this.types = types
   }
 
@@ -32,7 +32,6 @@ class Type {
    * @returns {string}
    */
   addExample (example) {
-    
     const type = getType(example)
     if (!type) return
     if (!this.types.includes(type)) this.types.push(type)
@@ -55,7 +54,6 @@ const typeMap = {
   'Number': 'number'
 }
 
-
 /**
  * Get type
  * @param {Object} example
@@ -66,7 +64,7 @@ const typeMap = {
  * @param {Object} [example.param.params]
  * @returns {string}
  */
-function getType(example) {
+function getType (example) {
   if (example === null || example === undefined || !example.type) {
     return null
   }
@@ -74,8 +72,8 @@ function getType(example) {
     if (example.params.length) {
       return `${getType(example.params[0])}[]`
     }
-  } 
-  
+  }
+
   if (example.type === 'Promise') {
     return `Promise<${getType(example.param)}>`
   }
