@@ -10,12 +10,14 @@ const moveFile = util.promisify(fs.rename)
 const src = path.resolve(__dirname, 'src')
 const snapshots = path.resolve(__dirname, 'snapshots')
 const runs = path.resolve(__dirname, 'runs')
-const files = fs.readdirSync(src)
+const { getFiles } = require('../src/helpers')
+const files = getFiles(src, false)
 const changeCase = require('change-case')
 const clean = require('../src/bin/clean')
 const generateDocs = require('../src/bin/generateDocs')
 const putInspect = require('../src/bin/enableInspection')
 const Inspector = require('../src/Inspector')
+
 
 function formatFilename(file) {
   return changeCase.sentenceCase(
