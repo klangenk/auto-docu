@@ -2,7 +2,7 @@ const fs = require('fs')
 const Inserter = require('../Inserter')
 const Function = require('./Function')
 
-class JsDoc {
+class JSDoc {
   constructor (meta, inspect) {
     this.functions = meta.map((func, funcIndex) => new Function(func, inspect[funcIndex]))
   }
@@ -19,4 +19,4 @@ class JsDoc {
   }
 }
 
-module.exports = JsDoc
+module.exports = JSDoc

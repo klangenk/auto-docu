@@ -1,5 +1,5 @@
 const getFilenames = require('../filenames')
-const JsDoc = require('../JsDoc')
+const JSDoc = require('../JSDoc')
 const fs = require('fs')
 
 module.exports = (file) => {
@@ -16,7 +16,7 @@ module.exports = (file) => {
 
   const source = fs.readFileSync(filenames.original).toString()
     
-  const result = new JsDoc(meta, inspect).write(source)
+  const result = new JSDoc(meta, inspect).write(source)
   fs.writeFileSync(filenames.src, result)
 
 }
