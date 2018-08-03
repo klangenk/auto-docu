@@ -3,15 +3,34 @@ class Type {
     this.types = types
   }
 
+  /**
+   * Is defined
+   * @returns {boolean}
+   */
   get isDefined () {
     return !!this.types.length
   }
 
+  /**
+   * Parse
+   * @param {string} string
+   * @returns {Type}
+   */
   static parse (string) {
     const types = string.trim().slice(1, -1).split('|').filter(type => type)
     return new Type(types)
   }
 
+  /**
+   * Add example
+   * @param {Object} example
+   * @param {string} [example.type]
+   * @param {Object|Object[]} [example.params]
+   * @param {Object} [example.param]
+   * @param {string} [example.param.type]
+   * @param {Object} [example.param.params]
+   * @returns {string}
+   */
   addExample (example) {
     
     const type = getType(example)
@@ -20,6 +39,10 @@ class Type {
     return type
   }
 
+  /**
+   * To string
+   * @returns {string}
+   */
   toString () {
     return `{${this.types.join('|')}}`
   }
@@ -33,6 +56,16 @@ const typeMap = {
 }
 
 
+/**
+ * Get type
+ * @param {Object} example
+ * @param {string} [example.type]
+ * @param {Object|Object[]} [example.params]
+ * @param {Object} [example.param]
+ * @param {string} [example.param.type]
+ * @param {Object} [example.param.params]
+ * @returns {string}
+ */
 function getType(example) {
   if (example === null || example === undefined || !example.type) {
     return null

@@ -4,6 +4,11 @@ const { flatten } = require('../helpers')
 const changeCase = require('change-case')
 
 class Function {
+  /**
+   * Constructor
+   * @param {Object} meta
+   * @param {Object[]} [calls]
+   */
   constructor (meta, calls) {
     Object.assign(this, meta)
     this.returns = new Type()
@@ -27,6 +32,9 @@ class Function {
     }
   }
 
+  /**
+   * Parse comment
+   */
   parseComment () {
     const lines =  this.comment
       .trim()
@@ -48,6 +56,10 @@ class Function {
     
   }
 
+  /**
+   * To string
+   * @returns {string}
+   */
   toString () {
     const lines = [
       `/**`,

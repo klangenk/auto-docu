@@ -9,6 +9,11 @@ const regexParts = {
 
 
 
+/**
+ * Find functions
+ * @param {string} source
+ * @returns {Object[]}
+ */
 function findFunctions (source) {
   const {indentation, fName, paramList, paramListArrow, comment, async} = regexParts 
   let regex = new RegExp(`${comment}${indentation}${async}[^,\n\(]*?${fName}\\s*?${paramList}\\s*?\\{`, 'gm')
@@ -61,6 +66,12 @@ function findFunctions (source) {
     .sort((a,b) => a.pos - b.pos)
 }
 
+/**
+ * Find end
+ * @param {string} src
+ * @param {number} bodyStart
+ * @returns {number}
+ */
 function findEnd(src, bodyStart) {
   const stack = ['{']
   let lastStringStart
@@ -95,6 +106,11 @@ function findEnd(src, bodyStart) {
 }
 
 
+/**
+ * Extract params
+ * @param {string} params
+ * @returns {Object[]}
+ */
 function extractParams (params) {
   if (!params.trim().length) return []
   const stack = []

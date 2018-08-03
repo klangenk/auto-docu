@@ -14,10 +14,24 @@ class Param {
     this.func = func
   }
 
+  /**
+   * Parent
+   * @param {string} [parent]
+   */
   set parent (parent) {
     this.fullName = parent ? `${parent}.${this.name}` : this.name
   }
 
+  /**
+   * Create
+   * @param {function} func
+   * @param {string} name
+   * @param {string} [defaultValue]
+   * @param {string} [parent]
+   * @param {} [types]
+   * @param {} [description]
+   * @returns {Param}
+   */
   static create (func, name, defaultValue, parent, types, description) {
     const oldParam = func.oldParams[`${parent}.${name}`] || func.oldParams[name]
     if (oldParam) {
@@ -27,6 +41,12 @@ class Param {
     return new Param(func, name, defaultValue, parent, types, description)
   }
 
+  /**
+   * Parse
+   * @param {function} func
+   * @param {string} string
+   * @returns {Param}
+   */
   static parse (func, string) {
     const regex = /@\S+((?: \{.*\})?) (\S+)(.*)/
     const match = string.match(regex)
@@ -40,6 +60,12 @@ class Param {
     this.props[key].addExample(value)
   }
 
+  /**
+   * Add example
+   * @param {Object} example
+   * @param {string} [example.type]
+   * @param {Object|Object[]} [example.params]
+   */
   addExample (example) {
     this.calls++
     if (!example.type) {
@@ -71,6 +97,9 @@ class Param {
     }
   }
 
+  /**
+   * Check optional
+   */
   checkOptional () {
     Object.values(this.props).forEach(prop => {
       if (prop.calls < this.calls || this.optional) {
@@ -79,6 +108,10 @@ class Param {
     })
   }
 
+  /**
+   * To array
+   * @returns {string[]}
+   */
   toArray () {
     this.checkOptional()
     let name = this.fullName

@@ -1,3 +1,8 @@
+/**
+ * Exports
+ * @param {string} filename
+ * @returns {Object}
+ */
 module.exports = filename => {
   const parts = filename.split('.')
   const ext = parts.pop()

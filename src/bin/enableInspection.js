@@ -4,6 +4,10 @@ const putInspect = require('../putInspect')
 
 
 
+/**
+ * Enable inspection
+ * @param {string} filename
+ */
 function enableInspection (filename) {
 
   const filenames = getFilenames(filename)

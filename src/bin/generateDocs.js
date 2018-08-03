@@ -2,6 +2,10 @@ const getFilenames = require('../filenames')
 const JSDoc = require('../JSDoc')
 const fs = require('fs')
 
+/**
+ * Exports
+ * @param {string} file
+ */
 module.exports = (file) => {
   const filenames = getFilenames(file)
   const meta = require(filenames.meta)

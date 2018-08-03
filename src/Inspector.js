@@ -1,6 +1,10 @@
 const fs = require('fs')
 const getFilenames = require('./filenames')
 
+/**
+ * Map param
+ * @param {*} value
+ */
 async function mapParam (value) {
   if (value === null || value === undefined) {
     return {}
@@ -45,6 +49,11 @@ async function mapParam (value) {
 
 
 class Inspector {
+  /**
+   * Constructor
+   * @param {string} filename
+   * @param {function} onUpdate
+   */
   constructor (filename, onUpdate) {
     this.calls = []
     this.onUpdate = onUpdate || ((calls) => {
@@ -54,6 +63,12 @@ class Inspector {
 
  
 
+  /**
+   * Handle call
+   * @param {number} index
+   * @param {Object[]} params
+   * @param {*} returns
+   */
   async handleCall(index, params, returns) {
     if (!this.calls[index]) this.calls[index] = []
     this.calls[index].push({

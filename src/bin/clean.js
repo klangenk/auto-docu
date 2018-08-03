@@ -1,6 +1,10 @@
 const fs = require('fs')
 const getFilenames = require('../filenames')
 
+/**
+ * Remove
+ * @param {string} file
+ */
 const remove = (file) => {
   try {
     fs.unlinkSync(file)
@@ -9,6 +13,11 @@ const remove = (file) => {
   }
 }
 
+/**
+ * Copy
+ * @param {string} from
+ * @param {string} to
+ */
 const copy = (from, to) => { 
   try { 
     fs.copyFileSync(from, to) 
@@ -17,6 +26,11 @@ const copy = (from, to) => {
   } 
 } 
 
+/**
+ * Clean
+ * @param {string} filename
+ * @param {boolean} restore
+ */
 function clean (filename, restore) {
   const filenames = getFilenames(filename)
   remove(filenames.inspect)

@@ -2,6 +2,13 @@ const Inserter = require('./Inserter')
 const findFunctions = require('./findFunctions')
 
 
+/**
+ * Put inspect
+ * @param {string} source
+ * @param {string} fileId
+ * @param {boolean} [skipInit=false]
+ * @returns {Object}
+ */
 function putInspect (source, fileId, skipInit = false) {
 
   const functions = findFunctions(source)
