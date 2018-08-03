@@ -63,12 +63,34 @@ function findFunctions (source) {
 
 function findEnd(src, bodyStart) {
   const stack = ['{']
+  let lastStringStart
   for (let i = bodyStart; i < src.length; i++) {
+    if (escaped) {
+      escaped = false
+      break
+    }
     switch (src[i]) {
+      case '\\':
+        i++
+        break
+      case '`':
+      case '\'':
+      case '"':
+      case '/':
+        if (lastStringStart) {
+          if (lastStringStart === src[i]) {
+            lastStringStart = null
+          }
+        } else {
+          lastStringStart = src[i]
+        }
+        break;
       case '{':
+        if (lastStringStart) break;
         stack.push('{')
         break
       case '}':
+        if (lastStringStart) break;
         stack.pop()
         if (!stack.length) return i
         break
