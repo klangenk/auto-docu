@@ -21,4 +21,21 @@ module.exports = (test) => {
     param10: 1234,
     param11: 1234
   })
+
+  test.test3({
+    param1: {
+      param2: true,
+      param3: 1234,
+      param4: {},
+      param5: () => {},
+    },
+    param6: {
+      param6: false,
+      param7: 1234,
+      param8: 1234,
+      param9: 1234,
+      param10: 1234,
+      param11: 1234
+    }
+  })
 }

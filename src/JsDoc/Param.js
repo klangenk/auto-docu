@@ -1,4 +1,5 @@
 const Type = require('./Type')
+const { flatten } = require('../helpers')
 
 class Param {
   constructor (func, name, defaultValue, parent = '', types = new Type(), description = '') {
@@ -78,7 +79,7 @@ class Param {
     })
   }
 
-  toString () {
+  toArray () {
     this.checkOptional()
     let name = this.fullName
     if (this.defaultValue !== undefined) name = `${name}=${this.defaultValue.replace(/'|"/g,'')}`
@@ -86,11 +87,13 @@ class Param {
     const param =`@param ${this.types} ${name} ${this.description.trim()}`.trim()
     let doc = [` * ${param}`]
 
-    if (Object.keys(this.props).length <= 10) {
-      doc = doc.concat(Object.values(this.props).map(prop => prop.toString()))
+    const subDoc = flatten(Object.values(this.props).map(prop => prop.toArray()))
+
+    if (subDoc.length > 10) {
+      return doc
     }
-    return doc
-      .join('\n')
+
+    return doc.concat(subDoc)
   }
 }
 

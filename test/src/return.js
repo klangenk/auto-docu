@@ -19,9 +19,14 @@ function test4 (a) {
   return 8
 }
 
+function test5 () {
+  return 5
+}
+
 module.exports = {
   test1,
   test2,
   test3,
-  test4
+  test4,
+  test5
 }

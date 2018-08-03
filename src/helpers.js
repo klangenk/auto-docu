@@ -21,3 +21,7 @@ exports.getFiles = (root, shouldResolve = true) => {
   if (shouldResolve) files = files.map(file => resolve(root, file))
   return files
 }
+
+exports.flatten = (arrays) => {
+  return [].concat.apply([], arrays)
+}

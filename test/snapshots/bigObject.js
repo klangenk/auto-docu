@@ -20,7 +20,16 @@ function test2 (a) {
 
 }
 
+/**
+ * Test3
+ * @param {Object} a
+ */
+function test3 (a) {
+
+}
+
 module.exports = {
   test1,
-  test2
+  test2,
+  test3
 }

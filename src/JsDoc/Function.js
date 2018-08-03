@@ -1,6 +1,7 @@
 const Param = require('./Param')
 const Type = require('./Type')
-var changeCase = require('change-case')
+const { flatten } = require('../helpers')
+const changeCase = require('change-case')
 
 class Function {
   constructor (meta, calls) {
@@ -13,16 +14,17 @@ class Function {
       this.description = changeCase.sentenceCase(this.name)
     }
 
-    this.params = this.params.map(({ name, defaultValue }, paramIndex) => {
-      const param = Param.create(this, name, defaultValue)
-      if (calls) {
-        calls.forEach(call => {
-          param.addExample(call.params[paramIndex])
-          this.returns.addExample(call.returns)
+    this.params = this.params.map(({ name, defaultValue }) => Param.create(this, name, defaultValue))
+
+    if (calls) {
+      calls.forEach(call => {
+        this.params.forEach((param, index) => {
+          param.addExample(call.params[index])
         })
-      }
-      return param
-    })
+       
+        this.returns.addExample(call.returns)
+      })
+    }
   }
 
   parseComment () {
@@ -50,7 +52,7 @@ class Function {
     const lines = [
       `/**`,
       ` * ${this.description.split('\n').join('\n * ')}`,
-      ...this.params.map(param => param.toString()),
+      ...flatten(this.params.map(param => param.toArray())),
       this.returns.isDefined && ` * @returns ${this.returns}`,
       ' */'
     ].filter(x => x)
