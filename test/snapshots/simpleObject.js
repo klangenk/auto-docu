@@ -6,6 +6,6 @@
  * @param {number} [a.batz]
  */
 const awesomeFunction = a => {
- 
+
 }
 module.exports = awesomeFunction

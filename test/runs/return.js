@@ -1,7 +1,13 @@
+const assert = require('assert')
+
 module.exports = (test) => {
-  test.test1('foo')
-  test.test2('foo')
-  test.test3('foo')
-  test.test4('foo')
-  test.test5()
+  assert.strictEqual(test.test1('foo'), 5)
+  assert.strictEqual(test.test2('foo'), 5)
+  assert.deepStrictEqual(test.test3('foo'), {
+    foo: 'bar'
+  })
+  assert.strictEqual(test.test4('foo'), 5)
+  assert.strictEqual(test.test4(), 8)
+  assert.strictEqual(test.test5(), 5)
+  assert.strictEqual(test.test6(), 'test')
 }

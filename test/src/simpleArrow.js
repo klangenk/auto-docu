@@ -1,14 +1,14 @@
 const test1 = a => {
- 
+
 }
 
 const test2 = (a, b) => {
-
+  return 5
 }
 
 const test3 = a => 5
 
-const test4 = (a,b) => 5
+const test4 = (a, b) => 5
 
 module.exports = {
   test1,

@@ -25,11 +25,14 @@ const test6 = async a => {
   return result
 }
 
+const test7 = a => test1(a)
+
 module.exports = {
   test1,
   test2: obj.test2,
   test3,
   test4,
   test5,
-  test6
+  test6,
+  test7
 }

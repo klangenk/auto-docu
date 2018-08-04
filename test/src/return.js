@@ -23,10 +23,13 @@ function test5 () {
   return 5
 }
 
+const test6 = () => 'test'
+
 module.exports = {
   test1,
   test2,
   test3,
   test4,
-  test5
+  test5,
+  test6
 }

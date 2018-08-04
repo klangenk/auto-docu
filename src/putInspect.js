@@ -23,14 +23,14 @@ function putInspect (source, fileId, skipInit = false) {
   functions.forEach((func, i) => {
     let cb = `() => { ${inserter.original.slice(func.body.start, func.body.end)} }`
     if (func.async) cb = `async ${cb}`
-    let after = `inspector.inspect(${[i, cb, ...func.params.map(p => p.accessor)].join(', ')})`
+    let inspect
     if (func.hasBody) {
-      after = `return ${after}`
+      inspect = `return inspector.inspect(${[i, cb, ...func.params.map(p => p.accessor)].join(', ')})`
     } else {
-      after += ' || '
+      inspect = `inspector.inspectInline(${[i, ...func.params.map(p => p.accessor)].join(', ')}).returns = `
     }
 
-    inserter.insert(after, func.body.start, func.body.end)
+    inserter.insert(inspect, func.body.start, func.body.end)
   })
 
   return {

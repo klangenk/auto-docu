@@ -5,6 +5,6 @@
  * @param {boolean} param0.bar
  */
 const awesomeFunction = ({foo, bar}) => {
- 
+
 }
 module.exports = awesomeFunction

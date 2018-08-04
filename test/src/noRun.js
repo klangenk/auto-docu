@@ -1,5 +1,5 @@
 const awesomeFunction = (a, b) => {
- 
+
 }
 
 /**
@@ -8,6 +8,6 @@ const awesomeFunction = (a, b) => {
  * @param {number} b second
  */
 const anotherAwesomeFunction = (a, b) => {
- 
+
 }
 module.exports = {awesomeFunction, anotherAwesomeFunction}

@@ -29,7 +29,7 @@ function test3 (a) {
 
 /**
  * Test4
- * @param {string} a
+ * @param {string} [a]
  * @returns {number}
  */
 function test4 (a) {
@@ -47,10 +47,17 @@ function test5 () {
   return 5
 }
 
+/**
+ * Test6
+ * @returns {string}
+ */
+const test6 = () => 'test'
+
 module.exports = {
   test1,
   test2,
   test3,
   test4,
-  test5
+  test5,
+  test6
 }

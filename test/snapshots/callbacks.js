@@ -15,8 +15,8 @@ function test1 (a, b, cb) {
  */
 function test2 (a, cb) {
   test1(a, 'foo', (err, value) => {
-    if (err) return cb (err)
-    cb(value + 3)
+    if (err) return cb(err)
+    cb(null, value + 3)
   })
 }
 
@@ -36,8 +36,8 @@ function test3 (a, cb) {
  */
 function test4 (a, callback) {
   test1(a, 'foo', function (err, value) {
-    if (err) return callback (err)
-    callback(value + 3)
+    if (err) return callback(err)
+    callback(null, value + 3)
   })
 }
 

@@ -73,6 +73,16 @@ class Inspector {
     this.onUpdate(this.calls)
   }
 
+  inspectInline (index, ...params) {
+    const that = this
+    // eslint-disable-next-line accessor-pairs
+    return {
+      set returns (value) {
+        Inspector.promises.push(that.handleCall(index, params, value))
+      }
+    }
+  }
+
   inspect (index, func, ...params) {
     const returns = func(...params)
     Inspector.promises.push(this.handleCall(index, params, returns))
